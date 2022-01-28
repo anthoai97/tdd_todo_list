@@ -18,7 +18,7 @@ void main() {
     usecase = GetTodoList(mockTodoRepository);
   });
 
-  const tTodoList = [Todo(content: 'Test', id: 1, status: false)];
+  const tTodoList = [Todo(content: 'Test', id: 1, status: false),  Todo(content: 'Test2', id: 2, status: false)];
 
   test('Should return a list of todo from repository', () async {
     // arrage

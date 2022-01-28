@@ -41,6 +41,8 @@ dependencies:
   shared_preferences: ^2.0.12
   sqflite: ^2.0.2
   path: ^1.8.0
+  bloc: ^8.0.2
+  bloc_test: ^9.0.2
   
 
 dev_dependencies:
