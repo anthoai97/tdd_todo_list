@@ -43,6 +43,7 @@ dependencies:
   path: ^1.8.0
   bloc: ^8.0.2
   bloc_test: ^9.0.2
+  flutter_bloc: ^8.0.1
   
 
 dev_dependencies:
