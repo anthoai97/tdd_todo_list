@@ -6,9 +6,9 @@ import 'package:dartz/dartz.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/repositories/todo_repository.dart';
 
 class TodoRepositoryImpl implements TodoRepository {
-  final TodoLocalDateSource localDateSource;
+  final TodoLocalDataSource localDataSource;
 
-  TodoRepositoryImpl({required this.localDateSource});
+  TodoRepositoryImpl({required this.localDataSource});
 
   @override
   Future<Either<Failure, Todo>> createTodo() {
@@ -25,7 +25,7 @@ class TodoRepositoryImpl implements TodoRepository {
   @override
   Future<Either<Failure, List<Todo>>> getTodoList() async {
     try {
-      final localTodoList = await localDateSource.getTodoList();
+      final localTodoList = await localDataSource.getTodoList();
       return Right(localTodoList);
     } on CacheException {
       return Left(CacheFailure());

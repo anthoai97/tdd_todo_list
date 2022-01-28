@@ -10,10 +10,10 @@ import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
 
 import 'todo_repository_impl_test.mocks.dart';
 
-@GenerateMocks([TodoLocalDateSource])
+@GenerateMocks([TodoLocalDataSource])
 void main() {
   late TodoRepositoryImpl repositoryImpl;
-  late MockTodoLocalDateSource mockTodoLocalDateSource;
+  late MockTodoLocalDataSource mockTodoLocalDataSource;
 
   const tStatus = false;
   const tTodoList = [
@@ -22,34 +22,34 @@ void main() {
   ];
 
   setUp(() {
-    mockTodoLocalDateSource = MockTodoLocalDateSource();
+    mockTodoLocalDataSource = MockTodoLocalDataSource();
     repositoryImpl =
-        TodoRepositoryImpl(localDateSource: mockTodoLocalDateSource);
+        TodoRepositoryImpl(localDataSource: mockTodoLocalDataSource);
   });
 
   group('Get todo list', () {
     test('Should return List<Todo> locally cached data list', () async {
       // arrange
-      when(mockTodoLocalDateSource.getTodoList())
+      when(mockTodoLocalDataSource.getTodoList())
           .thenAnswer((_) async => tTodoList);
 
       // act
       final result = await repositoryImpl.getTodoList();
 
       // assert
-      verify(mockTodoLocalDateSource.getTodoList());
+      verify(mockTodoLocalDataSource.getTodoList());
       expect(result, equals(const Right(tTodoList)));
     });
 
     test('Should return CacheFailure when no cache data present', () async {
       // arrange
-      when(mockTodoLocalDateSource.getTodoList()).thenThrow(CacheException());
+      when(mockTodoLocalDataSource.getTodoList()).thenThrow(CacheException());
 
       // act
       final result = await repositoryImpl.getTodoList();
 
       // assert
-      verify(mockTodoLocalDateSource.getTodoList());
+      verify(mockTodoLocalDataSource.getTodoList());
       expect(result, equals(Left(CacheFailure())));
     });
   });

@@ -19,12 +19,12 @@ import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-/// A class which mocks [TodoLocalDateSource].
+/// A class which mocks [TodoLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockTodoLocalDateSource extends _i1.Mock
-    implements _i2.TodoLocalDateSource {
-  MockTodoLocalDateSource() {
+class MockTodoLocalDataSource extends _i1.Mock
+    implements _i2.TodoLocalDataSource {
+  MockTodoLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
