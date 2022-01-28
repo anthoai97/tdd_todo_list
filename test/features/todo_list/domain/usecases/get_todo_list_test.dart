@@ -29,7 +29,7 @@ void main() {
     final result = await usecase.call(NoParams());
 
     // assert
-    expect(result, const Right(tTodoList));
+    expect(result, equals(const Right(tTodoList)));
     verify(mockTodoRepository.getTodoList());
     verifyNoMoreInteractions(mockTodoRepository);
   });

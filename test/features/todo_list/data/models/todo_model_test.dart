@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
@@ -21,7 +22,7 @@ void main() {
       final result = TodoModel.fromJson(jsonMap);
 
       // assert
-      expect(result, tTodoModel);
+      expect(result, equals(tTodoModel));
     });
 
     test('Should return Json map containing the proper data', () async {
@@ -30,7 +31,7 @@ void main() {
 
       // assert
       final validMatcher = {"id": 1, "content": "Test", "status": false};
-      expect(result, validMatcher);
+      expect(result, equals(validMatcher));
     });
   });
 }

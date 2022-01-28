@@ -38,13 +38,6 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
               _FakeEither_0<_i5.Failure, List<_i6.Todo>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i6.Todo>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Todo>>> getTodoListByStatus(
-          bool? status) =>
-      (super.noSuchMethod(Invocation.method(#getTodoListByStatus, [status]),
-          returnValue: Future<_i2.Either<_i5.Failure, List<_i6.Todo>>>.value(
-              _FakeEither_0<_i5.Failure, List<_i6.Todo>>())) as _i4
-          .Future<_i2.Either<_i5.Failure, List<_i6.Todo>>>);
-  @override
   _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>> createTodo() =>
       (super.noSuchMethod(Invocation.method(#createTodo, []),
               returnValue: Future<_i2.Either<_i5.Failure, _i6.Todo>>.value(
