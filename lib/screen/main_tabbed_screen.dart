@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ttd_todo_list/di/injection_container.dart';
+import 'package:ttd_todo_list/features/todo_list/presentation/bloc/todo_bloc.dart';
 import 'package:ttd_todo_list/features/todo_list/presentation/page/todo_page.dart';
+import 'package:ttd_todo_list/features/todo_list/presentation/widget/create_task_dialog.dart';
 import 'package:ttd_todo_list/themes/styles.dart';
 
 class MainTabbedScreen extends StatefulWidget {
@@ -53,6 +57,15 @@ class _MainTabbedScreenState extends State<MainTabbedScreen>
     ];
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showCreateTaskDialog(context, submitFunction: (content) {
+            print(content);
+          });
+        },
+        backgroundColor: AppColors.primary,
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         items: items,
@@ -72,13 +85,16 @@ class _MainTabbedScreenState extends State<MainTabbedScreen>
         type: BottomNavigationBarType.fixed,
         mouseCursor: SystemMouseCursors.none,
       ),
-      body: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: items.map((BottomNavigationBarItem e) {
-          int index = items.indexOf(e);
-          return _bodyForTab(context, index);
-        }).toList(),
+      body: BlocProvider(
+        create: (context) => sl<TodoBloc>(),
+        child: PageView(
+          controller: _pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: items.map((BottomNavigationBarItem e) {
+            int index = items.indexOf(e);
+            return _bodyForTab(context, index);
+          }).toList(),
+        ),
       ),
     );
   }
