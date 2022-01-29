@@ -11,8 +11,12 @@ import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
     as _i7;
 import 'package:ttd_todo_list/features/todo_list/domain/repositories/todo_repository.dart'
     as _i2;
+import 'package:ttd_todo_list/features/todo_list/domain/usecases/create_todo_list.dart'
+    as _i8;
 import 'package:ttd_todo_list/features/todo_list/domain/usecases/get_todo_list.dart'
     as _i4;
+import 'package:ttd_todo_list/features/todo_list/domain/usecases/update_todo.dart'
+    as _i9;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -46,4 +50,46 @@ class MockGetTodoList extends _i1.Mock implements _i4.GetTodoList {
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Todo>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Todo>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Todo>>>);
+}
+
+/// A class which mocks [CreateTodo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockCreateTodo extends _i1.Mock implements _i8.CreateTodo {
+  MockCreateTodo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.TodoRepository get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+          returnValue: _FakeTodoRepository_0()) as _i2.TodoRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i7.Todo>> call(
+          _i8.CreateTodoParam? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.Todo>>.value(
+                  _FakeEither_1<_i6.Failure, _i7.Todo>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.Todo>>);
+}
+
+/// A class which mocks [UpdateTodo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUpdateTodo extends _i1.Mock implements _i9.UpdateTodo {
+  MockUpdateTodo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.TodoRepository get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+          returnValue: _FakeTodoRepository_0()) as _i2.TodoRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i7.Todo>> call(
+          _i9.UpdateTodoParam? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.Todo>>.value(
+                  _FakeEither_1<_i6.Failure, _i7.Todo>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.Todo>>);
 }

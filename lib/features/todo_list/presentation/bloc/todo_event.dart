@@ -13,3 +13,17 @@ class InitialTodo extends TodoEvent {
 
   const InitialTodo({required this.status});
 }
+
+class UpdateTodoEvent extends TodoEvent {
+  final Todo todo;
+  final List<Todo> todoList;
+
+  const UpdateTodoEvent({required this.todo, required this.todoList});
+}
+
+class CreateTodoEvent extends TodoEvent {
+  final Todo todo;
+  final List<Todo> todoList;
+
+  const CreateTodoEvent({required this.todo, required this.todoList});
+}
