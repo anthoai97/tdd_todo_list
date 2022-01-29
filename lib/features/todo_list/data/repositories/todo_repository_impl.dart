@@ -11,15 +11,13 @@ class TodoRepositoryImpl implements TodoRepository {
   TodoRepositoryImpl({required this.localDataSource});
 
   @override
-  Future<Either<Failure, Todo>> createTodo() {
-    // TODO: implement createTodo
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Either<Failure, bool>> delete() {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<Either<Failure, Todo>> createTodo(Todo todo) async {
+    try {
+      final localTodo = await localDataSource.createTodo(todo);
+      return Right(localTodo);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 
   @override
@@ -33,8 +31,12 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, Todo>> updateTodo() {
-    // TODO: implement updateTodo
-    throw UnimplementedError();
+  Future<Either<Failure, Todo>> updateTodo(Todo todo) async {
+    try {
+      final localTodo = await localDataSource.updateTodo(todo);
+      return Right(localTodo);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
   }
 }

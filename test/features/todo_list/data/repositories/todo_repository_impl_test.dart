@@ -53,4 +53,60 @@ void main() {
       expect(result, equals(Left(CacheFailure())));
     });
   });
+
+  group('Create todo', () {
+    const tTodo = Todo(content: 'Test2', id: 2, status: tStatus);
+    test('Should return A Todo when create complete', () async {
+      // arrange
+      when(mockTodoLocalDataSource.createTodo(any))
+          .thenAnswer((_) async => tTodo);
+
+      // act
+      final result = await repositoryImpl.createTodo(tTodo);
+
+      // assert
+      verify(mockTodoLocalDataSource.createTodo(tTodo));
+      expect(result, equals(const Right(tTodo)));
+    });
+
+    test('Should return CacheFailure when no cache data present', () async {
+      // arrange
+      when(mockTodoLocalDataSource.createTodo(any)).thenThrow(CacheException());
+
+      // act
+      final result = await repositoryImpl.createTodo(tTodo);
+
+      // assert
+      verify(mockTodoLocalDataSource.createTodo(tTodo));
+      expect(result, equals(Left(CacheFailure())));
+    });
+  });
+
+  group('Upate todo', () {
+    const tTodo = Todo(content: 'Test2', id: 2, status: tStatus);
+    test('Should return A Todo when update complete', () async {
+      // arrange
+      when(mockTodoLocalDataSource.updateTodo(any))
+          .thenAnswer((_) async => tTodo);
+
+      // act
+      final result = await repositoryImpl.updateTodo(tTodo);
+
+      // assert
+      verify(mockTodoLocalDataSource.updateTodo(tTodo));
+      expect(result, equals(const Right(tTodo)));
+    });
+
+    test('Should return CacheFailure when no cache data present', () async {
+      // arrange
+      when(mockTodoLocalDataSource.updateTodo(any)).thenThrow(CacheException());
+
+      // act
+      final result = await repositoryImpl.updateTodo(tTodo);
+
+      // assert
+      verify(mockTodoLocalDataSource.updateTodo(tTodo));
+      expect(result, equals(Left(CacheFailure())));
+    });
+  });
 }

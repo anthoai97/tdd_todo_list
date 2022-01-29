@@ -2,13 +2,13 @@
 // in ttd_todo_list/test/features/todo_list/data/repositories/todo_repository_impl_test.dart.
 // Do not manually edit this file.
 
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ttd_todo_list/features/todo_list/data/datasources/todo_local_data_source.dart'
-    as _i2;
+    as _i3;
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
-    as _i4;
+    as _i2;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -19,18 +19,34 @@ import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
+class _FakeTodo_0 extends _i1.Fake implements _i2.Todo {}
+
 /// A class which mocks [TodoLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockTodoLocalDataSource extends _i1.Mock
-    implements _i2.TodoLocalDataSource {
+    implements _i3.TodoLocalDataSource {
   MockTodoLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.Todo>> getTodoList() =>
+  _i4.Future<List<_i2.Todo>> getTodoList() =>
       (super.noSuchMethod(Invocation.method(#getTodoList, []),
-              returnValue: Future<List<_i4.Todo>>.value(<_i4.Todo>[]))
-          as _i3.Future<List<_i4.Todo>>);
+              returnValue: Future<List<_i2.Todo>>.value(<_i2.Todo>[]))
+          as _i4.Future<List<_i2.Todo>>);
+  @override
+  _i4.Future<_i2.Todo> createTodo(_i2.Todo? todo) =>
+      (super.noSuchMethod(Invocation.method(#createTodo, [todo]),
+              returnValue: Future<_i2.Todo>.value(_FakeTodo_0()))
+          as _i4.Future<_i2.Todo>);
+  @override
+  _i4.Future<_i2.Todo> updateTodo(_i2.Todo? todo) =>
+      (super.noSuchMethod(Invocation.method(#updateTodo, [todo]),
+              returnValue: Future<_i2.Todo>.value(_FakeTodo_0()))
+          as _i4.Future<_i2.Todo>);
+  @override
+  _i4.Future<bool> saveTodo(List<_i2.Todo>? todoList) =>
+      (super.noSuchMethod(Invocation.method(#saveTodo, [todoList]),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }

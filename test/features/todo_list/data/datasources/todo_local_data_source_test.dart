@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ttd_todo_list/core/constants.dart';
 import 'package:ttd_todo_list/features/todo_list/data/datasources/todo_local_data_source.dart';
@@ -33,6 +32,30 @@ void main() {
       final result = await dataSource.getTodoList();
       // assert
       expect(result, equals(tTodoList));
+    });
+  });
+
+  group('Create Todo', () {
+    final tTodo = TodoModel.fromJson((json.decode(fixture('todo.json'))));
+
+    test('Should return a todo when create todo complete', () async {
+      // act
+      final result = await dataSource.createTodo(tTodo);
+
+      // assert
+      expect(result, equals(tTodo));
+    });
+  });
+
+  group('Update Todo', () {
+    final tTodo = TodoModel.fromJson((json.decode(fixture('todo.json'))));
+
+    test('Should return a todo when update todo complete', () async {
+      // act
+      final result = await dataSource.updateTodo(tTodo);
+
+      // assert
+      expect(result, equals(tTodo));
     });
   });
 }
