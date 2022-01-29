@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/usecases/create_todo_list.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/usecases/get_todo_list.dart';
@@ -17,6 +18,8 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final CreateTodo createTodo;
   final UpdateTodo updateTodo;
 
+  List<Todo> todoData = [];
+
   TodoBloc(
       {required this.getTodoList,
       required this.createTodo,
@@ -26,7 +29,10 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
       if (event is InitialTodo) {
         emit(TodoLoading());
         final result = await getTodoList.call(NoParams());
-        result.fold((l) => emit(const TodoError(message: errorMsg)), (r) {
+        result.fold((l) {
+          emit(const TodoError(message: errorMsg));
+        }, (r) {
+          todoData = r;
           emit(TodoLoaded(todoList: r));
         });
       }
@@ -35,6 +41,7 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         final result = await createTodo.call(CreateTodoParam(todo: event.todo));
         result.fold((l) => emit(const TodoError(message: errorMsg)), (r) {
           var todoCreated = List<Todo>.from(event.todoList)..add(r);
+          todoData = todoCreated;
           emit(TodoLoaded(todoList: todoCreated));
         });
       }
@@ -44,7 +51,9 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
         result.fold((l) => emit(const TodoError(message: errorMsg)), (r) {
           var index = event.todoList.indexWhere((e) => e.id == r.id);
           var todoUpdated = List<Todo>.from(event.todoList);
-          todoUpdated[index] = r;
+          todoData = todoUpdated;
+          todoUpdated[index] =
+              Todo(content: r.content, id: r.id, status: r.status);
           emit(TodoLoaded(todoList: todoUpdated));
         });
       }

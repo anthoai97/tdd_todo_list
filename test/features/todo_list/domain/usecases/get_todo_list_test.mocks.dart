@@ -7,6 +7,8 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ttd_todo_list/core/error/failure.dart' as _i5;
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart'
+    as _i7;
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
     as _i6;
 import 'package:ttd_todo_list/features/todo_list/domain/repositories/todo_repository.dart'
@@ -38,13 +40,15 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
               _FakeEither_0<_i5.Failure, List<_i6.Todo>>())) as _i4
           .Future<_i2.Either<_i5.Failure, List<_i6.Todo>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>> createTodo(_i6.Todo? todo) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>> createTodo(
+          _i7.TodoModel? todo) =>
       (super.noSuchMethod(Invocation.method(#createTodo, [todo]),
               returnValue: Future<_i2.Either<_i5.Failure, _i6.Todo>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Todo>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>> updateTodo(_i6.Todo? todo) =>
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Todo>> updateTodo(
+          _i7.TodoModel? todo) =>
       (super.noSuchMethod(Invocation.method(#updateTodo, [todo]),
               returnValue: Future<_i2.Either<_i5.Failure, _i6.Todo>>.value(
                   _FakeEither_0<_i5.Failure, _i6.Todo>()))

@@ -1,5 +1,6 @@
 import 'package:ttd_todo_list/core/error/excaptions.dart';
 import 'package:ttd_todo_list/features/todo_list/data/datasources/todo_local_data_source.dart';
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
 import 'package:ttd_todo_list/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
@@ -11,7 +12,7 @@ class TodoRepositoryImpl implements TodoRepository {
   TodoRepositoryImpl({required this.localDataSource});
 
   @override
-  Future<Either<Failure, Todo>> createTodo(Todo todo) async {
+  Future<Either<Failure, Todo>> createTodo(TodoModel todo) async {
     try {
       final localTodo = await localDataSource.createTodo(todo);
       return Right(localTodo);
@@ -31,7 +32,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, Todo>> updateTodo(Todo todo) async {
+  Future<Either<Failure, Todo>> updateTodo(TodoModel todo) async {
     try {
       final localTodo = await localDataSource.updateTodo(todo);
       return Right(localTodo);

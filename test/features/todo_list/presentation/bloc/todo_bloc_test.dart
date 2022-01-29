@@ -47,7 +47,7 @@ void main() {
     ];
 
     final tTodo = TodoModel.fromJson((json.decode(fixture('todo.json'))));
-    const tTodoUpdate = Todo(content: 'Test', id: 1, status: true);
+    const tTodoUpdate = TodoModel(content: 'Test', id: 1, status: true);
 
     final tCreateTodoList = List<Todo>.from(tTodoList)..add(tTodo);
     final tUpdateTodoList = [
@@ -60,7 +60,7 @@ void main() {
       when(mockGetTodoList(any)).thenAnswer((_) async => Right(tTodoList));
 
       // act
-      bloc.add(const InitialTodo(status: null));
+      bloc.add(const InitialTodo());
       await untilCalled(mockGetTodoList(any));
       // assert
       verify(mockGetTodoList(NoParams()));
@@ -72,7 +72,7 @@ void main() {
         when(mockGetTodoList(any)).thenAnswer((_) async => Right(tTodoList));
         return bloc;
       },
-      act: (bloc) => bloc.add(const InitialTodo(status: null)),
+      act: (bloc) => bloc.add(const InitialTodo()),
       expect: () => <TodoState>[
         TodoLoading(),
         TodoLoaded(todoList: tTodoList),
@@ -86,7 +86,7 @@ void main() {
             .thenAnswer((_) async => Left(CacheFailure()));
         return bloc;
       },
-      act: (bloc) => bloc.add(const InitialTodo(status: null)),
+      act: (bloc) => bloc.add(const InitialTodo()),
       expect: () => <TodoState>[
         TodoLoading(),
         const TodoError(message: errorMsg),

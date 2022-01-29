@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:ttd_todo_list/core/error/excaptions.dart';
 import 'package:ttd_todo_list/core/error/failure.dart';
 import 'package:ttd_todo_list/features/todo_list/data/datasources/todo_local_data_source.dart';
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart';
 import 'package:ttd_todo_list/features/todo_list/data/repositories/todo_repository_impl.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
 
@@ -55,7 +56,7 @@ void main() {
   });
 
   group('Create todo', () {
-    const tTodo = Todo(content: 'Test2', id: 2, status: tStatus);
+    const tTodo = TodoModel(content: 'Test2', id: 2, status: tStatus);
     test('Should return A Todo when create complete', () async {
       // arrange
       when(mockTodoLocalDataSource.createTodo(any))
@@ -83,7 +84,7 @@ void main() {
   });
 
   group('Upate todo', () {
-    const tTodo = Todo(content: 'Test2', id: 2, status: tStatus);
+    const tTodo = TodoModel(content: 'Test2', id: 2, status: tStatus);
     test('Should return A Todo when update complete', () async {
       // arrange
       when(mockTodoLocalDataSource.updateTodo(any))

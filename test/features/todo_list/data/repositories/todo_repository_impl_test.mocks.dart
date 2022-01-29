@@ -7,6 +7,8 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:ttd_todo_list/features/todo_list/data/datasources/todo_local_data_source.dart'
     as _i3;
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart'
+    as _i5;
 import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart'
     as _i2;
 
@@ -36,17 +38,17 @@ class MockTodoLocalDataSource extends _i1.Mock
               returnValue: Future<List<_i2.Todo>>.value(<_i2.Todo>[]))
           as _i4.Future<List<_i2.Todo>>);
   @override
-  _i4.Future<_i2.Todo> createTodo(_i2.Todo? todo) =>
+  _i4.Future<_i2.Todo> createTodo(_i5.TodoModel? todo) =>
       (super.noSuchMethod(Invocation.method(#createTodo, [todo]),
               returnValue: Future<_i2.Todo>.value(_FakeTodo_0()))
           as _i4.Future<_i2.Todo>);
   @override
-  _i4.Future<_i2.Todo> updateTodo(_i2.Todo? todo) =>
+  _i4.Future<_i2.Todo> updateTodo(_i5.TodoModel? todo) =>
       (super.noSuchMethod(Invocation.method(#updateTodo, [todo]),
               returnValue: Future<_i2.Todo>.value(_FakeTodo_0()))
           as _i4.Future<_i2.Todo>);
   @override
-  _i4.Future<bool> saveTodo(List<_i2.Todo>? todoList) =>
+  _i4.Future<bool> saveTodo(List<_i5.TodoModel>? todoList) =>
       (super.noSuchMethod(Invocation.method(#saveTodo, [todoList]),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
 }

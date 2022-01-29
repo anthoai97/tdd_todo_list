@@ -9,11 +9,11 @@ import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
 abstract class TodoLocalDataSource {
   Future<List<Todo>> getTodoList();
 
-  Future<Todo> createTodo(Todo todo);
+  Future<Todo> createTodo(TodoModel todo);
 
-  Future<Todo> updateTodo(Todo todo);
+  Future<Todo> updateTodo(TodoModel todo);
 
-  Future<bool> saveTodo(List<Todo> todoList);
+  Future<bool> saveTodo(List<TodoModel> todoList);
 }
 
 class TodoLocalDataSourceImpl implements TodoLocalDataSource {
@@ -77,8 +77,8 @@ class TodoLocalDataSourceImpl implements TodoLocalDataSource {
   @override
   Future<bool> saveTodo(List<Todo> todoList) {
     try {
-      sharedPreferences.setString(
-          SharedPreferencesKey.todoKey, json.encode(todoList));
+      String list = json.encode(todoList);
+      sharedPreferences.setString(SharedPreferencesKey.todoKey, list);
       return Future.value(true);
     } on Exception {
       throw CacheException();

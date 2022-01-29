@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:ttd_todo_list/features/todo_list/domain/entities/todo.dart';
+import 'package:ttd_todo_list/features/todo_list/data/models/todo_model.dart';
 import 'package:ttd_todo_list/features/todo_list/domain/usecases/create_todo_list.dart';
 
 import 'get_todo_list_test.mocks.dart';
@@ -15,7 +15,7 @@ void main() {
     usecase = CreateTodo(mockTodoRepository);
   });
 
-  const tTodo = Todo(content: 'Test', id: 1, status: false);
+  const tTodo = TodoModel(content: 'Test', id: 1, status: false);
 
   test('Should return a todo when create Todo', () async {
     // arrage

@@ -9,20 +9,18 @@ abstract class TodoEvent extends Equatable {
 }
 
 class InitialTodo extends TodoEvent {
-  final bool? status;
-
-  const InitialTodo({required this.status});
+  const InitialTodo();
 }
 
 class UpdateTodoEvent extends TodoEvent {
-  final Todo todo;
+  final TodoModel todo;
   final List<Todo> todoList;
 
   const UpdateTodoEvent({required this.todo, required this.todoList});
 }
 
 class CreateTodoEvent extends TodoEvent {
-  final Todo todo;
+  final TodoModel todo;
   final List<Todo> todoList;
 
   const CreateTodoEvent({required this.todo, required this.todoList});
